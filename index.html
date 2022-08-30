@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projeto JavaScript</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script defer src="js/index.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>NerdBox Store 1.0</h1>
+    </header>
+
+    <main>
+      <div class="title">
+        <h2>Produtos</h2>
+        <span>Lista de produtos da minha loja.</span>
+      </div>
+
+      <div class="card">
+        <div class="lineInput">
+          <label for="">Produto</label>
+          <input type="text" id="product" placeholder="Nome do produto" />
+        </div>
+
+        <div class="lineInput">
+          <label for="">Valor</label>
+          <input type="text" id="price" placeholder="Valor do produto" />
+        </div>
+
+        <button onclick="product.save()">Salvar</button>
+        <button onclick="product.cancel()">Cancelar</button>
+      </div>
+
+      <div class="content">
+        <table border="1">
+          <thead>
+            <th class="center">ID</th>
+            <th>Produto</th>
+            <th>Valor</th>
+            <th class="center">Ações</th>
+          </thead>
+          <tbody id="tbody">
+            <!-- <tr>
+              <td class="center">01</td>
+              <td>Nerd Business Service</td>
+              <td>5000</td>
+              <td class="center">
+                <img src="assets/edit-button.png" alt="botão editar" />
+                <img src="assets/delete-button.png" alt="botão deletar" />
+              </td>
+            </tr> -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </body>
+</html>
