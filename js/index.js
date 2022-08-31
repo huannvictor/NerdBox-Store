@@ -1,4 +1,4 @@
-class Product {
+class App {
 	constructor() {
 		this.id = 1;
 		this.productArray = [];
@@ -43,7 +43,7 @@ class Product {
 			editIcon.src = "assets/edit-button.png";
 			editIcon.setAttribute(
 				"onclick",
-				`product.setEdit(
+				`app.setEdit(
           ${JSON.stringify(this.productArray[i])}
         )`
 			);
@@ -52,7 +52,7 @@ class Product {
 			deleteIcon.src = "assets/delete-button.png";
 			deleteIcon.setAttribute(
 				"onclick",
-				`product.delete(
+				`app.delete(
           ${JSON.stringify(this.productArray[i])}
         )`
 			);
@@ -141,4 +141,4 @@ class Product {
 	}
 }
 
-const product = new Product();
+const app = new App();
