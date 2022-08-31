@@ -49,6 +49,7 @@ button {
   border-radius: 3px;
   font-weight: bold;
   transition: all ease 0.3s;
+  width: 7rem;
 }
 
 button:hover{

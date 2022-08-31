@@ -1,107 +1,144 @@
 class Product {
-  constructor() {
-    this.id = 1;
-    this.productArray = [];
-  }
+	constructor() {
+		this.id = 1;
+		this.productArray = [];
+		this.editId = null;
+	}
 
-  save() {
-    let product = this.getData();
+	save() {
+		let product = this.getData();
 
-    if (this.validation(product)) {
-      this.add(product);
-    }
+		if (this.validation(product)) {
+			if (this.editId == null) {
+				this.add(product);
+			} else {
+				this.update(this.editId, product);
+			}
+		}
 
-    this.createTable();
-    this.clearFields();
-  }
+		this.createTable();
+		this.clearFields();
+	}
 
-  createTable() {
-    let tbody = document.getElementById("tbody");
-    tbody.innerText = "";
+	createTable() {
+		let tbody = document.getElementById("tbody");
+		tbody.innerText = "";
 
-    for (let i = 0; i < this.productArray.length; i++) {
-      let tRow = tbody.insertRow();
+		for (let i = 0; i < this.productArray.length; i++) {
+			let tRow = tbody.insertRow();
 
-      let tData_id = tRow.insertCell();
-      let tData_name = tRow.insertCell();
-      let tData_price = tRow.insertCell();
-      let tData_actions = tRow.insertCell();
+			let tData_id = tRow.insertCell();
+			let tData_name = tRow.insertCell();
+			let tData_price = tRow.insertCell();
+			let tData_actions = tRow.insertCell();
 
-      tData_id.innerText = this.productArray[i].id;
-      tData_name.innerText = this.productArray[i].name;
-      tData_price.innerText = this.productArray[i].price;
+			tData_id.innerText = this.productArray[i].id;
+			tData_name.innerText = this.productArray[i].name;
+			tData_price.innerText = this.productArray[i].price;
 
-      tData_id.classList.add("center");
-      tData_actions.classList.add("center");
+			tData_id.classList.add("center");
+			tData_actions.classList.add("center");
 
-      let editIcon = document.createElement("img");
-      editIcon.src = "assets/edit-button.png";
+			let editIcon = document.createElement("img");
+			editIcon.src = "assets/edit-button.png";
+			editIcon.setAttribute(
+				"onclick",
+				`product.setEdit(
+          ${JSON.stringify(this.productArray[i])}
+        )`
+			);
 
-      let deleteIcon = document.createElement("img");
-      deleteIcon.src = "assets/delete-button.png";
-      deleteIcon.setAttribute(
-        "onclick",
-        `product.delete(${this.productArray[i].id})`
-      );
+			let deleteIcon = document.createElement("img");
+			deleteIcon.src = "assets/delete-button.png";
+			deleteIcon.setAttribute(
+				"onclick",
+				`product.delete(
+          ${JSON.stringify(this.productArray[i])}
+        )`
+			);
 
-      tData_actions.appendChild(editIcon);
-      tData_actions.appendChild(deleteIcon);
-    }
-  }
+			tData_actions.appendChild(editIcon);
+			tData_actions.appendChild(deleteIcon);
+		}
+	}
 
-  add(product) {
-    this.productArray.push(product);
-    this.id++;
-  }
+	add(product) {
+		product.price = parseFloat(product.price);
+		this.productArray.push(product);
+		this.id++;
+	}
 
-  getData() {
-    let product = {};
+	update(id, product) {
+		for (let i = 0; i < this.productArray.length; i++) {
+			if (this.productArray[i].id == id) {
+				this.productArray[i].name = product.name;
+				this.productArray[i].price = product.price;
+			}
+		}
+	}
 
-    product.id = this.id;
-    product.name = document.getElementById("product").value;
-    product.price = document.getElementById("price").value;
+	setEdit(data) {
+		this.editId = data.id;
 
-    return product;
-  }
+		document.getElementById("product").value = data.name;
+		document.getElementById("price").value = data.price;
 
-  validation(product) {
-    let message = "";
+		document.getElementById("saveData").innerText = "Atualizar";
+	}
 
-    if (product.name == "") {
-      message += "- Informe o nome do produto\n";
-    }
+	getData() {
+		let product = {};
 
-    if (product.price == "") {
-      message += "- Informe o preço do produto\n";
-    }
+		product.id = this.id;
+		product.name = document.getElementById("product").value;
+		product.price = document.getElementById("price").value;
 
-    if (message != "") {
-      alert(message);
-      return false;
-    }
+		return product;
+	}
 
-    return true;
-  }
+	validation(product) {
+		let message = "";
 
-  cancel() {
-    this.clearFields();
-  }
+		if (product.name == "") {
+			message += "- Informe o nome do produto\n";
+		}
 
-  clearFields() {
-    document.getElementById("product").value = "";
-    document.getElementById("price").value = "";
-  }
+		if (product.price == "") {
+			message += "- Informe o preço do produto\n";
+		}
 
-  delete(id) {
-    let tbody = document.getElementById("tbody");
+		if (message != "") {
+			alert(message);
+			return false;
+		}
 
-    for (let i = 0; i < this.productArray.length; i++) {
-      if (this.productArray[i].id == id) {
-        this.productArray.splice(i, 1);
-        tbody.deleteRow(i);
-      }
-    }
-  }
+		return true;
+	}
+
+	cancel() {
+		this.clearFields();
+	}
+
+	clearFields() {
+		document.getElementById("product").value = "";
+		document.getElementById("price").value = "";
+
+		document.getElementById("saveData").innerText = "Salvar";
+		this.editId = null;
+	}
+
+	delete(data) {
+		if (confirm(`Deseja deletar o produto: ${data.name}`)) {
+			let tbody = document.getElementById("tbody");
+
+			for (let i = 0; i < this.productArray.length; i++) {
+				if (this.productArray[i].id == data.id) {
+					this.productArray.splice(i, 1);
+					tbody.deleteRow(i);
+				}
+			}
+		}
+	}
 }
 
 const product = new Product();
