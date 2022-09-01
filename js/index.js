@@ -8,13 +8,11 @@ class App {
 	save() {
 		let product = this.getData();
 
-		if (this.validation(product)) {
-			if (this.editId == null) {
-				this.add(product);
-			} else {
-				this.update(this.editId, product);
-			}
-		}
+		this.validation(product)
+			? this.editId == null
+				? this.add(product)
+				: this.update(this.editId, product)
+			: null;
 
 		this.createTable();
 		this.clearFields();
@@ -99,15 +97,15 @@ class App {
 	validation(product) {
 		let message = "";
 
-		if (product.name == "") {
+		if (product.name === "") {
 			message += "- Informe o nome do produto\n";
 		}
 
-		if (product.price == "") {
+		if (product.price === "") {
 			message += "- Informe o preço do produto\n";
 		}
 
-		if (message != "") {
+		if (message !== "") {
 			alert(message);
 			return false;
 		}
@@ -143,6 +141,7 @@ class App {
 
 const app = new App();
 
+/*
 class Counter {
 	constructor() {
 		this.quantity = 0;
@@ -166,4 +165,4 @@ class Counter {
 }
 
 const counter = new Counter();
-counter.counter();
+counter.counter();*/
