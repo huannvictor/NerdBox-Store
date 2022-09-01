@@ -142,3 +142,28 @@ class App {
 }
 
 const app = new App();
+
+class Counter {
+	constructor() {
+		this.quantity = 0;
+		this.buttonListener = document.getElementById("saveData");
+	}
+
+	counter() {
+		this.buttonListener.addEventListener(
+			"click",
+			(this.quantity = app.productArray.length)
+		);
+
+		// return this.quantity;
+		console.log(this.quantity);
+	}
+
+	setCounter() {
+		let productQuantity = document.getElementById("productQuantity");
+		productQuantity.innerText = this.quantity;
+	}
+}
+
+const counter = new Counter();
+counter.counter();
