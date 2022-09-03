@@ -18,21 +18,23 @@ http://nerdbox-store.vercel.app/
 - Versionamento
 - Deploy com Vercel.app
 
-## Screenshots
-#### Aplicativo aberto
-<img src="assets/screenshot-01.png">
+<h2>Screenshots</h2> 
+<div style="text-align: center;>
+  <h3> Aplicativo aberto</h3>
+  <img src="assets/screenshot-01.png">
 
-#### Primeiro Item Cadastrado
-<img src="assets/screenshot-02.png">
+  <h3> Primeiro Item Cadastrado</h3>
+  <img src="assets/screenshot-02.png">
 
-#### Item Sendo Alterado
-<img src="assets/screenshot-03.png">
+  <h3> Item Sendo Alterado</h3>
+  <img src="assets/screenshot-03.png">
 
-#### Item Sendo Excluído (confirmação da exclusão)
-<img src="assets/screenshot-04.png">
+  <h3> Item Sendo Excluído (confirmação da exclusão)</h3>
+  <img src="assets/screenshot-04.png">
 
-#### Item excluído da lista
-<img src="assets/screenshot-05.png">
+  <h3> Item excluído da lista</h3>
+  <img src="assets/screenshot-05.png">
+</div>
 
 
 
